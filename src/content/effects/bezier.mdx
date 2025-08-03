@@ -1,0 +1,177 @@
+import ObjRef from "../../components/ObjRef"
+
+import attr from "../../generics/attributes"
+import curves from "../../generics/curves"
+import inputs from "../../generics/inputs"
+
+# Bezier
+
+An effect that emits a part which follows a user-defined Bezier curve.
+
+The Bezier curve is defined by control points named in a numerical order and the tangent points inside them.
+
+- T0 is the left tangent.
+- T1 is the right tangent.
+
+The first point can only have a right tangent, and the last point can only have a left tangent.
+
+<ObjRef
+  curves={[
+    {
+      name: "Easing",
+      short: "Controls the easing of the animation along the bezier path.",
+      long: "Controls the easing of the animation along the bezier path. It can also be used as a way to control the speed.",
+      inputs: [],
+    },
+  ]}
+  attributes={[
+    attr.EmitDelay,
+    attr.EmitCount,
+    attr.EmitDuration,
+
+    {
+      name: "DestroyDelay",
+      type: "number",
+      short: "The amount of seconds to wait before destroying the emitted object after the animation is finished.",
+    },
+
+    attr.EffectDuration,
+
+    {
+      name: "SpreadAngle",
+      type: "Vector2",
+      short: "The amount of random spread applied to the initial direction of the bezier path.",
+    },
+
+    attr.Enabled,
+    attr.Rate,
+    attr.SyncPosition,
+
+    {
+      name: "EmissionDirection",
+      type: "Enum",
+      short: "Determines the initial direction of the bezier path.",
+      long: "Determines the initial direction of the bezier path.\n**Values:** Top, Bottom, Left, Right, Front, Back",
+    },
+
+    {
+      name: "Shape",
+      type: "Enum",
+      short: "The shape from which the parts are emitted.",
+      long: "The shape from which the parts are emitted.\n**Values:** Box, Cylinder, Sphere, Disc",
+    },
+
+    {
+      name: "ShapePartial",
+      type: "number",
+      short: "Controls the percentage of the shape to use for emission, from 0 to 1.",
+      long: "Controls the percentage of the shape to use for emission. A value of 0.5 will only emit from half of the shape. Only applicable for Cylinder, Sphere, and Disc.",
+    },
+
+    {
+      name: "ShapeStyle",
+      type: "Enum",
+      short: "Decides whether to emit from the entire volume or just the surface of the shape.",
+      long: "Decides whether to emit from the entire volume or just the surface of the shape.\n**Values:** Volume, Surface"
+    },
+
+    {
+      name: "ShapeFace",
+      type: "Enum",
+      short: "Controls whether the bezier path faces outwards or inwards from the shape.",
+      long: "Controls the direction the emitted object faces.\n**Values:** InAndOut, Inward, Outward",
+    },
+
+    {
+      name: "MirrorPaths",
+      type: "boolean",
+      short: "When true, the path will be mirrored if it's on the other side of the 'End' attachment.",
+    },
+
+    {
+      name: "MirrorRotation",
+      type: "Vector3",
+      short: "The rotation in degrees applied to a path when it's mirrored.",
+    },
+
+    {
+      name: "ProjectileEnabled",
+      type: "boolean",
+      short: "When true, the object will enter a projectile phase after the bezier path is completed.",
+    },
+
+    {
+      name: "ProjectileSpeed",
+      type: "number",
+      short: "The speed of the object during the projectile phase.",
+    },
+
+    {
+      name: "ProjectileLifetime",
+      type: "NumberRange",
+      short: "The minimum and maximum duration of the projectile phase.",
+    },
+
+    {
+      name: "MatchEndDirection",
+      type: "boolean",
+      short: "When true, the projectile will fly in the same direction as the 'End' attachment.",
+      long: "When true, the projectile will fly in the same direction as the 'End' attachment. If false, it will fly in the same direction as its velocity at the time the projectile phase begins.",
+    },
+
+    {
+      name: "HitboxEnabled",
+      type: "boolean",
+      short: "When true, the effect will be stopped as soon as it collides with something or reaches the end of its duration/lifetime.",
+      long: `
+When true, the effect will be stopped as soon as it collides with something or reaches the end of its duration/lifetime.
+
+> [!NOTE]
+>
+> Hitbox detection uses \`GetPartsInPart\`, so the part's size matters for collisions.
+`
+    },
+
+    {
+      name: "HitboxFilterTag",
+      type: "Enum",
+      short: "The tag used to create a part filter for hitbox detection.",
+      long: "The tag used to create a part filter for hitbox detection. The nature of the filter changes based on the 'HitboxFilterType' attribute.",
+    },
+
+    {
+      name: "HitboxFilterType",
+      type: "Enum",
+      short: "Defines the nature of the part filter used for hitbox detection.",
+      long: `Defines the nature of the part filter used for hitbox detection.
+        - Exclude - all parts inside the filter are ignored when performing a hitbox check.
+        - Include - only parts inside the filter are eligible to be detected by the hitbox.
+      `,
+    },
+
+    {
+      name: "HitboxCollisionGroup",
+      type: "string",
+      short: "The collision group to use for hitbox detection.",
+      long: "The collision group to use for hitbox detection. Parts with collision groups that cannot collide with the hitbox collision group are ignored.",
+    },
+
+    {
+      name: "HitboxIgnoreCanCollide",
+      type: "boolean",
+      short: "When true, hitboxes will ignore the 'CanCollide' property of parts.",
+    },
+
+    {
+      name: "FacePath",
+      type: "boolean",
+      short: "When true, parts will continuously align with the direction of the bezier path.",
+    },
+
+    {
+      name: "ArcSpace",
+      type: "boolean",
+      short: "When true, parts will move at a uniform speed along the path.",
+    },
+  ]}
+/>

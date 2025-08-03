@@ -1,0 +1,42 @@
+import ObjRef from "../../components/ObjRef"
+
+import attr from "../../generics/attributes"
+import curves from "../../generics/curves"
+import inputs from "../../generics/inputs"
+
+# Shockwave Ring
+
+An effect that emits a series of parts in a ring, raycasting downwards from a specified origin to find a surface to place them on.
+
+<ObjRef
+  curves={[
+    curves.ShockSize,
+    curves.ShockTransparency,
+  ]}
+  attributes={[
+    attr.EmitDelay,
+
+    {
+      name: "Radius",
+      type: "number",
+      short: "The radius of the ring.",
+    },
+
+    {
+      name: "Segments",
+      type: "number",
+      short: "The number of parts forming the ring.",
+    },
+
+    {
+      name: "Lifetime",
+      type: "NumberRange",
+      short: "The minimum and maximum lifetime of a segment.",
+    },
+
+    attr.MinSize,
+    attr.MaxSize,
+    attr.SizeScaleStart,
+    attr.SizeScaleEnd,
+  ]}
+/>

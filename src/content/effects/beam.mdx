@@ -1,0 +1,49 @@
+import ObjRef from "../../components/ObjRef"
+
+import attr from "../../generics/attributes"
+import curves from "../../generics/curves"
+import inputs from "../../generics/inputs"
+
+# Beam
+
+Beam is a built-in visual effect.
+
+<ObjRef
+  curves={[
+    {
+      name: "Transparency_Base",
+      short: "Controls the Transparency property.",
+      inputs: [
+        inputs.NormStart,
+        inputs.NormEnd,
+        inputs.Envelope,
+        inputs.Smoothness,
+      ],
+    },
+
+    {
+      name: "Transparency_Scale",
+      short: "Applies a scaling factor to the Transparency of the Beam.",
+      long: "Applies a scaling factor on the Transparency of the Beam. Because this curve multiplies the Transparency NumberSequence, you'd usually want to set the Transparency to 1 when working with this curve.",
+      inputs: [inputs.PosStart, inputs.PosEnd],
+    },
+
+    {
+      name: "Width0",
+      short: "Controls the easing of the Width0 animation.",
+      inputs: [inputs.PosStart, inputs.PosEnd],
+    },
+
+    {
+      name: "Width1",
+      short: "Controls the easing of the Width1 animation.",
+      inputs: [inputs.PosStart, inputs.PosEnd],
+    },
+
+    curves.Speed,
+  ]}
+  attributes={[
+    attr.EmitDelay,
+    attr.EffectDuration,
+  ]}
+/>

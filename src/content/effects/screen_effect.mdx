@@ -1,0 +1,48 @@
+import ObjRef from "../../components/ObjRef"
+
+import attr from "../../generics/attributes"
+import curves from "../../generics/curves"
+import inputs from "../../generics/inputs"
+
+# Screen Effect
+
+An effect that resizes and positions a part to fill the camera's viewport. This is used as a container for other effects that are meant to be displayed in screen space.
+
+<ObjRef
+  curves={[]}
+  attributes={[
+    {
+      name: "Enabled",
+      type: "boolean",
+      short: "Determines whether the part is considered a screen effect.",
+    },
+
+    {
+      name: "PartDistance",
+      type: "number",
+      short: "The distance from the camera to the screen part in studs.",
+      long: "The distance from the camera to the screen part. This can be used to control the perceived size and perspective of the screen effect.",
+    },
+
+    {
+      name: "PartScale",
+      type: "Vector2",
+      short: "A scaling factor applied to the part's size after it has been sized to the screen.",
+    },
+
+    {
+      name: "OffsetPosition",
+      type: "Vector3",
+      short: "A positional offset from the center of the camera's view.",
+      long: "A positional offset applied to the part after it has been positioned in front of the camera.",
+    },
+
+    {
+      name: "OffsetRotation",
+      type: "Vector3",
+      short: "A rotational offset in degrees applied to the screen part.",
+      long: "A rotational offset in degrees applied to the screen part after it has been positioned in front of the camera. The rotation is applied around the part's center.",
+    },
+  ]}
+/>
+

@@ -1,0 +1,50 @@
+import ObjRef from "../../components/ObjRef"
+
+import attr from "../../generics/attributes"
+import curves from "../../generics/curves"
+import inputs from "../../generics/inputs"
+
+# Mesh
+
+Mesh VFX are used to create 3D VFX from parts and meshes.
+
+<ObjRef
+  curves={[
+    {
+      name: "Part_CFrame",
+      short: "Controls the easing of the CFrame animation.",
+      long: "Controls the easing of the CFrame animation. The starting and ending CFrames can be changed by moving the Start and End parts.",
+      inputs: [],
+    },
+
+    {
+      name: "Part_Transparency",
+      short: "Controls the easing of the Transparency animation.",
+      inputs: [inputs.PosStart, inputs.PosEnd],
+    },
+
+    {
+      name: "Part_Size",
+      short: "Controls the easing of the Size animation.",
+      long: "Controls the easing of the Size animation. The starting and ending sizes can be changed by resizing the Start and End parts.",
+      inputs: [],
+    },
+
+    {
+      name: "Mesh_Scale",
+      short: "Controls the easing of the Scale animation.",
+      long: "Controls the easing of the Scale animation. The starting and ending scales can be changed by editing the Scale property of the SpecialMeshes inside the Start and End parts.",
+      inputs: [],
+    },
+
+    curves.Speed,
+  ]}
+  attributes={[
+    attr.EmitDelay,
+    attr.EmitDuration,
+    attr.EffectDuration,
+    attr.SyncPosition,
+    attr.Enabled,
+    attr.Rate,
+  ]}
+/>

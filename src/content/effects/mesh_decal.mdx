@@ -1,0 +1,47 @@
+import ObjRef from "../../components/ObjRef"
+
+import attr from "../../generics/attributes"
+import curves from "../../generics/curves"
+import inputs from "../../generics/inputs"
+
+# Mesh Decals
+
+Mesh Decals are emitted by Mesh VFX.
+
+A mesh can can have any amount of decals, however every decal pair needs to have a unique name.
+To assign a flipbook to a decal, use the Mesh Flipbook Importer.
+
+<ObjRef
+  curves={[
+    {
+      name: "Transparency",
+      short: "Controls the easing of the transparency animation.",
+      inputs: [inputs.Start, inputs.End],
+    },
+    {
+      name: "Color",
+      short: "Controls the easing of the color animation.",
+      inputs: [],
+    },
+    {
+      name: "Flipbook_Change",
+      short: "Controls the easing of the transition between flipbook frames.",
+      inputs: [inputs.Duration],
+    },
+  ]}
+  attributes={[
+    {
+      name: "FlipbookEnabled",
+      type: "boolean",
+      short: "Decides whether a flipbook is played if it exists.",
+    },
+
+    {
+      name: "FlipbookTextures",
+      type: "buffer",
+      short: "An f64 packed buffer with ordered flipbook texture frame IDs.",
+      long: "An f64 packed buffer with ordered flipbook texture frame IDs. Do not edit this attribute manually, it should only be done by the flipbook importer.",
+    },
+  ]}
+/>
+

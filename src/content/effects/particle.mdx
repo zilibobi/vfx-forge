@@ -1,0 +1,32 @@
+import ObjRef from "../../components/ObjRef"
+
+import attr from "../../generics/attributes"
+import curves from "../../generics/curves"
+import inputs from "../../generics/inputs"
+
+# Particle
+
+ParticleEmitters are the most commonly used built-in VFX instances.
+
+<ObjRef
+  curves={[
+    curves.SeqTransparency,
+    curves.SeqSize,
+    curves.SeqSquash,
+    {
+      name: "TimeScale",
+      short: "Controls the easing of the TimeScale animation.",
+      long: "Controls the easing of the TimeScale animation. Values can only range from 0 to 1 - a Roblox limitation.",
+      inputs: [
+        inputs.Duration,
+        inputs.NormStart,
+        inputs.NormEnd,
+      ]
+    },
+  ]}
+  attributes={[
+    attr.EmitCount,
+    attr.EmitDelay,
+    attr.EmitDuration,
+  ]}
+/>

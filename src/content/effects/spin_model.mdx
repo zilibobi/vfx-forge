@@ -1,0 +1,53 @@
+import ObjRef from "../../components/ObjRef"
+
+import attr from "../../generics/attributes"
+import curves from "../../generics/curves"
+import inputs from "../../generics/inputs"
+
+# Spin Model
+
+An effect that applies continuous rotation and/or scaling to a model. The model's pivot point is used as the center of rotation and scaling.
+
+<ObjRef
+  curves={[
+    {
+      name: "Scale_Curve",
+      short: "Controls the easing of the scale animation.",
+      inputs: [
+        {
+          name: "Start",
+          desc: "The starting value of the curve.",
+          range: [0.001, "inf"],
+        }, 
+        {
+          name: "Start",
+          desc: "The starting value of the curve.",
+          range: [0.001, "inf"],
+        },
+      ],
+    },
+    {
+      name: "SpinSpeed_Curve",
+      short: "Controls the speed of the spin.",
+      long: "Controls the speed of the spin. If it becomes negative, the model will start spinning in the opposite direction.",
+      inputs: [inputs.Duration, inputs.Start, inputs.End],
+    },
+  ]}
+  attributes={[
+    attr.EmitDelay,
+
+    {
+      name: "SpinRotation",
+      type: "Vector3",
+      short: "The rotation in degrees applied to the model per second.",
+    },
+
+    {
+      name: "SpinDuration",
+      type: "number",
+      short: "The duration of the spin in seconds.",
+    },
+    
+    attr.SyncPosition,
+  ]}
+/>

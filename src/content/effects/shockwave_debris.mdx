@@ -1,0 +1,77 @@
+import ObjRef from "../../components/ObjRef"
+
+import attr from "../../generics/attributes"
+import curves from "../../generics/curves"
+import inputs from "../../generics/inputs"
+
+# Shockwave Debris
+
+An effect that emits a number of physics-based parts, which are launched from the origin with random velocities and spins. It can optionally inherit the material and color from nearby parts.
+
+<ObjRef
+  curves={[
+    curves.ShockSize,
+    curves.ShockTransparency,
+  ]}
+  attributes={[
+    attr.EmitDelay,
+
+    {
+      name: "Amount",
+      type: "NumberRange",
+      short: "The minimum and maximum number of debris parts to emit.",
+    },
+
+    {
+      name: "Lifetime",
+      type: "NumberRange",
+      short: "The minimum and maximum lifetime of a debris part in seconds.",
+    },
+
+    {
+      name: "InheritanceEnabled",
+      type: "boolean",
+      short: "When true, debris will attempt to inherit material, color, and transparency from parts near the origin.",
+    },
+
+    {
+      name: "InheritanceRadius",
+      type: "number",
+      short: "The radius to check for parts to inherit properties from.",
+    },
+
+    {
+      name: "InheritanceMaxResults",
+      type: "number",
+      short: "The maximum number of parts to check within the radius for inheritance.",
+    },
+
+    {
+      name: "LinearMagnitude",
+      type: "NumberRange",
+      short: "The minimum and maximum magnitude of the initial linear velocity.",
+    },
+
+    {
+      name: "AngularMagnitude",
+      type: "NumberRange",
+      short: "The minimum and maximum magnitude of the initial angular velocity.",
+    },
+
+    attr.SizeScaleEnd,
+    attr.MinSize,
+    attr.MaxSize,
+
+    {
+      name: "MinDirection",
+      type: "Vector3",
+      short: "The minimum direction unit vector for the linear impulse relative to the origin.",
+    },
+
+    {
+      name: "MaxDirection",
+      type: "Vector3",
+      short: "The maximum direction unit vector for the linear impulse relative to the origin.",
+    },
+  ]}
+/>

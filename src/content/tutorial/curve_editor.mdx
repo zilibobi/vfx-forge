@@ -1,0 +1,46 @@
+# Summary
+
+The Curve Editor allows you to change how each individual property is animated for the currently selected effects.
+
+## Points
+
+Points are the root of your curve.
+
+You can create a new point by holding `ctrl` and clicking where you want the point to be on the canvas, or by bringing
+up the context menu and selecting 'New Point' by clicking on the canvas without holding the `ctrl` key.
+
+### Point Tooltips
+
+Tooltips can be brought up by hovering over a point.
+
+All curves are normalized by nature - they aren't bound by their Start and End values.
+Tooltips help you understand where a point is in time and what its value is.
+
+You can make a tooltip show its delta (the difference in time and value from the last point) by holding `shift`.
+
+### Point Shifting
+
+Imagine a scenario where you set up a curve for TimeScale, but then you decided to change the duration of the curve
+and now all of the points have different times.
+
+It would be very tedious to shift each point again to have the same Time. Instead, use the point shifter from the
+context menu to offset all points based on the old and new values (in this case it's the duration).
+
+### Loading Curves
+
+If you applied a curve to an effect, you can load it back into the editor from the context menu. This only works with curves created by the plugin.
+
+## Presets
+
+Presets are listed in the sidebar and can be created by clicking on the '+' icon above it. Custom presets are listed
+at the very bottom and have a context menu you can use to delete, rename, and update a preset.
+
+### Curve Presets
+
+Curve presets only replace the curve for the currently selected property.
+
+### Effect Presets
+
+Effect presets can be distinguished by their icon behind the preset name.
+
+Applying an effect preset replaces curves and inputs for all properties (it only replaces the inputs edited at the time of creating the preset).

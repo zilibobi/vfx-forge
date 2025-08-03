@@ -1,0 +1,56 @@
+import ObjRef from "../../components/ObjRef"
+
+import attr from "../../generics/attributes"
+import curves from "../../generics/curves"
+import inputs from "../../generics/inputs"
+
+# Shockwave
+
+This is a parent class used to define the raycasting behavior of ring, line, and debris effects.
+
+<ObjRef
+  curves={[]}
+  attributes={[
+    {
+      name: "RayDirection",
+      type: "Vector3",
+      short: "The direction and magnitude of the raycast from the origin attachment.",
+    },
+
+    {
+      name: "RayCollisionGroup",
+      type: "string",
+      short: "The collision group used for raycasting.",
+      long: "The collision group used for raycasting. Parts with collision groups that cannot collide with the ray's collision group are ignored."
+    },
+
+    {
+      name: "FilterTag",
+      type: "string",
+      short: "The tag used to create a part filter for raycasting.",
+      long: "The tag used to create a part filter for raycasting. The nature of the filter changes based on the 'FilterType' attribute.",
+    },
+
+    {
+      name: "FilterType",
+      type: "Enum",
+      short: "Defines the nature of the part filter used for raycasting.",
+      long: `Defines the nature of the part filter used for raycasting.
+        - Exclude - all parts inside the filter are ignored by the ray.
+        - Include - only parts inside the filter can be hit by the ray.
+      `,
+    },
+
+    {
+      name: "IgnoreWater",
+      type: "boolean",
+      short: "When true, rays will ignore water terrain.",
+    },
+
+    {
+      name: "IgnoreCanCollide",
+      type: "boolean",
+      short: "When true, rays will ignore the 'CanCollide' property of parts.",
+    },
+  ]}
+/>

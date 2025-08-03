@@ -1,0 +1,80 @@
+import ObjRef from "../../components/ObjRef"
+
+import attr from "../../generics/attributes"
+import curves from "../../generics/curves"
+import inputs from "../../generics/inputs"
+
+# Shockwave Line
+
+An effect that emits parts in a straight line from its origin.
+
+<ObjRef
+  curves={[
+    curves.ShockSize,
+    curves.ShockTransparency,
+
+    {
+      name: "Scale",
+      short: "Controls the scale of rocks over the line's duration.",
+      inputs: [
+        inputs.Start,
+        inputs.End,
+      ],
+    },
+
+    {
+      name: "Path",
+      short: "Determines the easing in which the rocks travel along the line.",
+      inputs: [],
+    },
+
+    {
+      name: "Rate",
+      short: "Determines how many rocks are created per second.",
+      inputs: [
+        inputs.Start,
+        inputs.End,
+      ],
+    },
+  ]}
+  attributes={[
+    attr.EmitDelay,
+
+    {
+      name: "Duration",
+      type: "number",
+      short: "The amount of time in which the length goal is reached.",
+    },
+
+    {
+      name: "Lifetime",
+      type: "NumberRange",
+      short: "The minimum and maximum lifetime of a rock.",
+    },
+
+    attr.SyncPosition,
+
+    {
+      name: "Length",
+      type: "number",
+      short: "The length of the line.",
+    },
+
+    {
+      name: "Direction",
+      type: "Vector3",
+      short: "The direction of the line relative to the origin's CFrame.",
+    },
+
+    {
+      name: "Rotation",
+      type: "NumberRange",
+      short: "The minimum and maximum rotation of a rock on the Y axis.",
+    },
+
+    attr.MinSize,
+    attr.MaxSize,
+    attr.SizeScaleStart,
+    attr.SizeScaleEnd,
+  ]}
+/>
