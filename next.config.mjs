@@ -4,6 +4,9 @@ const withNextra = nextra({});
 
 export default withNextra({
   output: "export",
+  trailingSlash: true,
+  basePath: "/forge-docs",
+  assetPrefix: "/forge-docs",
   images: {
     unoptimized: true,
   },
