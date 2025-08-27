@@ -48,7 +48,7 @@ export default {
   },
 
   Smoothness: {
-    name: "Envelope",
+    name: "Smoothness",
     desc: "The value that decides the amount of points on the curve, calculated using the [Newton Raphson method](https://en.wikipedia.org/wiki/Newton's_method).",
     range: [0, 1],
   },
