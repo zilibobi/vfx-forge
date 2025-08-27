@@ -1,0 +1,74 @@
+import ObjRef from "../../components/ObjRef"
+
+import attr from "../../generics/attributes"
+import curves from "../../generics/curves"
+import inputs from "../../generics/inputs"
+
+# Camera Shake
+
+A camera shake effect, utilizing the Shake module from [RbxUtil](https://github.com/Sleitnick/RbxUtil).
+
+<ObjRef
+  curves={[
+    curves.Speed,
+  ]}
+  attributes={[
+    attr.EmitDelay,
+    attr.EmitDuration,
+
+    {
+      name: "Falloff",
+      type: "number",
+      short: "The radius of the sphere within which the shake is perceivable when parented to a part or an attachment.",
+    },
+
+    {
+      name: "Amplitude",
+      type: "number",
+      short: "The maximum amplitude/strength of the shake.",
+    },
+
+    {
+      name: "Frequency",
+      type: "number",
+      short: "The speed of the shake.",
+    },
+
+    {
+      name: "FadeInTime",
+      type: "number",
+      short: "The amount of seconds it takes for the shake to fade in.",
+    },
+
+    {
+      name: "FadeOutTime",
+      type: "number",
+      short: "The amount of seconds it takes for the shake to fade out.",
+    },
+
+    {
+      name: "SustainTime",
+      type: "number",
+      short: "The amount of seconds the shake is sustained for.",
+      long: `
+      The amount of seconds the shake is sustained for.
+
+      The \`EmitDuration\` attribute can also be used to achieve a prolonged shake effect.
+      In the future camera shakes may receive an \`Enabled\` attribute as a way to not rely on a fixed sustain/enabled duration.
+      `,
+    },
+
+    {
+      name: "PositionInfluence",
+      type: "Vector3",
+      short: "Similar to `Amplitude`, but only affecting the shake's influence on position of the camera, while also allowing per-axis control.",
+    },
+
+    {
+      name: "RotationInfluence",
+      type: "Vector3",
+      short: "Similar to `Amplitude`, but only affecting the shake's influence on rotation of the camera, while also allowing per-axis control.",
+    },
+  ]}
+/>
+

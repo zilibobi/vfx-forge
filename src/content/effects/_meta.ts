@@ -5,6 +5,7 @@ export default {
   mesh_decal: "Mesh Decal",
   bezier: "Bezier",
   spin_model: "Spin Model",
+  camera_shake: "Camera Shake",
   screen_effect: "Screen Effect",
   shockwave: "Shockwave",
   shockwave_ring: "Shockwave Ring",
