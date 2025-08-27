@@ -29,14 +29,7 @@ export default {
     short: "Decides whether the effect follows its origin after being emitted.",
     long: `
     Decides whether the effect follows its origin after being emitted.
-
-    - Meshes follow their ancestor attachment, or the CFrame of the Start part.
-    If it's the former, the rotation of the Start part is still synced (required for making spinning meshes).
-
-    - Beziers act similar to ParticleEmitters. They simply follow the CFrame of their part or attachment parent.
-
-    - Spin Models find their first attachment or part ancestor and follow its CFrame.
-
+    - Meshes, Beziers, and Spin Models find their first attachment or part ancestor and follow its CFrame.
     - Shockwave Lines follow the CFrame of their origin attachment. SyncPosition Lines are useful for creating non-straight paths.
     `,
   },
