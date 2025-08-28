@@ -1,5 +1,5 @@
 import nextra from "nextra";
-import config from "./src/config.ts";
+import config from "./src/config";
 
 const withNextra = nextra({});
 
