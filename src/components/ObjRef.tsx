@@ -1,15 +1,4 @@
-import { compileMdx } from "nextra/compile";
-import { MDXRemote } from "nextra/mdx-remote";
-
-async function compileText(text: string) {
-  const rawJs = await compileMdx(text, {});
-
-  return (
-    <div className="[&>p:first-child]:mt-0 [&>p:first-child]:pt-0">
-      <MDXRemote compiledSource={rawJs} />
-    </div>
-  );
-}
+import { compileText } from "../server_utils";
 
 const ObjRef = ({ attributes, curves }) => {
   return (
