@@ -35,6 +35,18 @@ export default {
     range: ["-inf", "inf"],
   },
 
+  RangeStart: {
+    name: "Start",
+    desc: "The starting value range of the curve.",
+    range: ["-inf", "inf"],
+  },
+
+  RangeEnd: {
+    name: "End",
+    desc: "The ending value range of the curve.",
+    range: ["-inf", "inf"],
+  },
+
   Duration: {
     name: "Duration",
     desc: "The amount of seconds it takes to reach the End value.",

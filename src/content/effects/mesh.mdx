@@ -1,4 +1,5 @@
 import ObjRef from "../../components/ObjRef"
+import { Tree, Node } from "../../components/RobloxTree"
 
 import attr from "../../generics/attributes"
 import curves from "../../generics/curves"
@@ -6,7 +7,65 @@ import inputs from "../../generics/inputs"
 
 # Mesh
 
-Mesh VFX are used to create 3D VFX from parts and meshes.
+Mesh VFX are 3D effects created by animating parts.
+
+Any type of 'Start' and 'End' parts within a model create a valid Mesh VFX.
+The simplest and most common way of creating mesh effects is to just use **MeshParts**.
+
+> [!NOTE]
+>
+> MeshPart and Union effects cannot be reasonably [pooled](https://en.wikipedia.org/wiki/Object_pool_pattern), which means that their CFrames are not updated in bulk.
+> Emitting a lot of these effects could impact performance more than if you were to use SpecialMeshes and basic parts.
+
+So you may want to use a simple structure like this:
+
+<Tree title="MeshPart VFX" className="mt-4">
+  <Node open type="Model">
+    <Node type="MeshPart" name="Start"/>
+    <Node type="MeshPart" name="End"/>
+  </Node>
+</Tree>
+
+The plugin also supports mesh flipbooks. You can learn more about using them in [this tutorial](/wip).
+If you either want to use flipbooks or have better performance, you will need to use this kind of structure:
+
+<Tree title="SpecialMesh & Decal VFX" className="mt-4">
+  <Node open type="Model">
+    <Node type="Part" name="Start" open>
+      <Node type="SpecialMesh"/>
+      <Node type="Decal"/>
+    </Node>
+    <Node type="Part" name="End" open>
+      <Node type="SpecialMesh"/>
+      <Node type="Decal"/>
+    </Node>
+  </Node>
+</Tree>
+
+You can have multiple decals in a mesh, just make sure the names of each decal pair are unique. Here's an example:
+
+<Tree title="Multiple Decals Example" className="mt-4">
+  <Node open type="Model">
+    <Node type="Part" name="Start" open>
+      <Node type="SpecialMesh"/>
+      <Node type="Decal" name="Wind" select/>
+      <Node type="Decal" name="Impact" select/>
+    </Node>
+    <Node type="Part" name="End" open>
+      <Node type="SpecialMesh"/>
+      <Node type="Decal" name="Wind" select/>
+      <Node type="Decal" name="Impact" select/>
+    </Node>
+  </Node>
+</Tree>
+
+That covers the basics! Keep in mind that meshes are not physics-based, meaning they do not act like particles, but rather are statically animated.
+That said, there are attributes like [SpreadAngle](#Attribute:SpreadAngle) and random rotation. You can use them to randomize your meshes and partly mimic particles.
+
+> [!NOTE]
+>
+> Note that not all properties are animated. If you want to animate an unsupported property, use [Tween Properties](tween_property).
+> All animated properties can be found in the curve summary below.
 
 <ObjRef
   curves={[
@@ -31,6 +90,13 @@ Mesh VFX are used to create 3D VFX from parts and meshes.
     },
 
     {
+      name: "Part_RotSpeed",
+      short: "Controls the easing of the RotSpeed animation.",
+      long: "Controls the easing of the RotSpeed animation. Only applies to non-zero init rotation axes.",
+      inputs: [inputs.RangeStart, inputs.RangeEnd],
+    },
+
+    {
       name: "Mesh_Scale",
       short: "Controls the easing of the Scale animation.",
       long: "Controls the easing of the Scale animation. The starting and ending scales can be changed by editing the Scale property of the SpecialMeshes inside the Start and End parts.",
@@ -43,6 +109,14 @@ Mesh VFX are used to create 3D VFX from parts and meshes.
     attr.EmitDelay,
     attr.EmitDuration,
     attr.EffectDuration,
+
+    {
+      name: "SpreadAngle",
+      type: "Vector2",
+      short: "The amount of random spread applied to the CFrame animation.",
+      long: "The amount of random spread applied to the CFrame animation. Applied around the origin."
+    },
+
     attr.SyncPosition,
     attr.Enabled,
     attr.Rate,

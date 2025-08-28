@@ -76,4 +76,16 @@ export default {
     short:
       "The scale factor applied to a parts's size in an animation at the end of its lifetime.",
   },
+
+  MinInitRot: {
+    name: "MinInitRot",
+    type: "Vector3",
+    short: "The minimum init rotation applied to the part.",
+  },
+
+  MaxInitRot: {
+    name: "MaxInitRot",
+    type: "Vector3",
+    short: "The maximum init rotation applied to the part.",
+  },
 };
