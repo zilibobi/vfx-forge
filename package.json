@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "scripts": {
     "dev": "next --turbopack",
     "build": "next build --turbopack",

@@ -10,19 +10,20 @@ import Tooltip from "../Tooltip";
 
 const RobloxIcon = dynamic(() => import("../RobloxIcon"), { ssr: false });
 
-type TreeProps = {
+export type TreeProps = {
   title: ReactNode;
   children?: ReactNode;
   className?: string;
 };
 
-type NodeProps = {
+export type NodeProps = {
   name?: ReactNode;
   tooltip?: ReactNode;
   children?: ReactNode;
   className?: string;
   type: string;
   open?: boolean;
+  select?: boolean;
 };
 
 const DepthContext = createContext(0);

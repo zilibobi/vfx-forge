@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useRef, ReactNode } from "react";
+import type { FC, ReactNode, CSSProperties } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface TooltipProps {
   children: ReactNode;
@@ -11,7 +12,7 @@ interface TooltipProps {
   delay?: number;
 }
 
-export default React.FC<TooltipProps> = ({
+const Tooltip: FC<TooltipProps> = ({
   children,
   content,
   disabled = false,
@@ -25,7 +26,7 @@ export default React.FC<TooltipProps> = ({
   const [isTracking, setIsTracking] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
 
-  const [style, setStyle] = React.useState<React.CSSProperties>({
+  const [style, setStyle] = useState<CSSProperties>({
     left: "-9999px",
     top: "-9999px",
   });
@@ -46,7 +47,7 @@ export default React.FC<TooltipProps> = ({
     };
   }, [isTracking]);
 
-  const handleMouseEnter = (e: React.MouseEvent) => {
+  const handleMouseEnter = (e) => {
     if (disabled) return;
 
     setMousePos({ x: e.clientX, y: e.clientY });
@@ -123,3 +124,5 @@ export default React.FC<TooltipProps> = ({
     </>
   );
 };
+
+export default Tooltip;
