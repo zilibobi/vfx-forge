@@ -63,7 +63,7 @@ const ObjRef = ({ attributes, curves }) => {
       {curves.length > 0 && (
         <>
           <h2 className="text-2xl font-bold">Curves</h2>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 mt-4">
             {curves.map((curve, index) => (
               <div key={index}>
                 <h3 className="text-xl font-bold" id={"Curve:" + curve.name}>
