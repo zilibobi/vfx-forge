@@ -1,22 +1,23 @@
-import { Footer, Layout, Navbar } from "nextra-theme-docs";
+import Image from "next/image";
 
+import { Footer, Layout, Navbar } from "nextra-theme-docs";
 import { Banner, Head } from "nextra/components";
+
 import { getPageMap } from "nextra/page-map";
+import config from "../config";
 
 import "nextra-theme-docs/style.css";
 import "./globals.css";
-
-import Logo from "../components/Logo";
 
 export const metadata = {};
 
 const navbar = (
   <Navbar
     logo={
-      <>
-        <Logo width={48} height={48} />
-        <span>VFX Forge</span>
-      </>
+      <div className="flex gap-4 items-center">
+        <img src={`${config.path}/images/logo.svg`} width="42" height="42" />
+        <span className="font-bold text-2xl">VFX Forge</span>
+      </div>
     }
   />
 );
