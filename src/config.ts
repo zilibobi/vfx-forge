@@ -1,3 +1,3 @@
 export default {
-  path: "/vfx-forge/docs",
+  path: "/vfx-forge",
 };
