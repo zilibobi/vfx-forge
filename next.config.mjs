@@ -1,12 +1,13 @@
 import nextra from "nextra";
+import config from "./src/config.ts";
 
 const withNextra = nextra({});
 
 export default withNextra({
   output: "export",
   trailingSlash: true,
-  basePath: "/forge-docs",
-  assetPrefix: "/forge-docs",
+  basePath: config.path,
+  assetPrefix: config.path,
   images: {
     unoptimized: true,
   },
