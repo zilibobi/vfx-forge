@@ -1,0 +1,58 @@
+## Initialization
+
+The module has a very simple interface. All you need to do to get started is initialize the module on the client:
+
+```luau filename="initialize.client.luau"
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local vfx = require(ReplicatedStorage.ForgeVFX) -- Replace with the path to wherever you put the module
+
+vfx.init()
+```
+
+To stop the module, call the `deinit` method.
+
+```luau filename="initialize.client.luau"
+vfx.deinit()
+```
+
+---
+
+You can also optionally initialize the module on the server.
+All it does is create the collision groups ussed by certain effects.
+
+Check the [replication example](../examples/basic_replication) for a simple replication setup.
+
+## Usage
+
+After initializing, you can call the `emit` method and pass the effects you want to emit to it.
+
+```luau filename="initialize.client.luau"
+vfx.emit(workspace.Effect)
+```
+
+This method returns an object describing the status of the emit request:
+
+```luau filename="initialize.client.luau"
+local env = vfx.emit(workspace.Effect)
+
+env.Finished:finally(function()
+  print("effect finished emitting!")
+end)
+```
+
+```luau
+type env = {
+  Finished: Promise,
+}
+```
+
+The module is also exposed inside `shared.vfx`, so you can do this in another script:
+
+```luau filename="effects.client.luau"
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local Effects = ReplicatedStorage:WaitForChild("VFX")
+
+shared.vfx.emit(Effects.Explosion, Effects.Wind)
+```

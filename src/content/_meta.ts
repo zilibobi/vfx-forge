@@ -3,5 +3,5 @@ export default {
   showcase: "Showcase",
   tutorial: "Getting Started",
   effects: "Effects",
-  api: "API Reference",
+  module: "Emit Module",
 };

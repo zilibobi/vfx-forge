@@ -1,0 +1,129 @@
+import { Tree, Node } from "../../../components/RobloxTree"
+
+## Setup
+### Initialization
+
+First, we need to initialize the emit module on each client. The code below assumes you have the module inside ReplicatedStorage like this:
+
+<Tree title="Module Setup" className="mt-4">
+  <Node open type="ReplicatedStorage">
+    <Node type="ModuleScript" name="ForgeVFX"/>
+  </Node>
+</Tree>
+
+You can place this code inside a LocalScript in StarterPlayerScripts.
+
+```luau filename="forge_init.client.luau"
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local vfx = require(ReplicatedStorage.ForgeVFX)
+
+vfx.init()
+```
+
+### Networking setup
+
+Now, we need to listen to emit requests from the server.
+Create a 'Remotes' folder in ReplicatedStorage and insert a RemoteEvent called 'Emit'.
+
+<Tree title="Networking Setup" className="mt-4">
+  <Node open type="ReplicatedStorage">
+    <Node type="ModuleScript" name="ForgeVFX"/>
+    <Node open type="Folder" name="Remotes">
+      <Node type="RemoteEvent" name="Emit"/>
+    </Node>
+  </Node>
+</Tree>
+
+> [!TIP]
+>
+> It's more performant to use UnreliableRemoteEvents instead of RemoteEvents for effect replication. The code below works with both event types.
+
+This code listens to emit requests from the server and calls whatever method the server wants, passing all of the remaining arguments to it.
+
+```luau filename="forge_init.client.luau"
+local remote = ReplicatedStorage.Remotes.Emit
+
+remote.OnClientEvent:Connect(function(method: string, ...)
+  local func = vfx[method]
+
+  if not func then
+    warn(`The server attempted to call a non-existent method '{method}' of the emit module!`)
+    return
+  end
+
+  func(...)
+end)
+```
+
+## On the server
+
+Now that you have each client with an initialized module, ready to emit effects, you can start sending out emit events.
+
+### Utility module
+
+Create a ModuleScript inside ServerStorage. The location of this module is not detrimental, so feel free to put it somewhere else.
+
+<Tree title="Utility Module Setup" className="mt-4">
+  <Node open type="ServerStorage">
+    <Node type="ModuleScript" name="emit_utility"/>
+  </Node>
+</Tree>
+
+Let's define some useful methods that we can call in our server-side code.
+
+```luau filename="emit_utility.luau"
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local Emit = ReplicatedStorage.Remotes.Emit
+
+local utility = {}
+
+function utility.emit(...: Instance)
+  Emit:FireAllClients("emit", ...)
+end
+
+function utility.emitForPlayers(players: { Player }, ...: Instance)
+  for _, player in players do
+    Emit:FireClient(player, "emit", ...)
+  end
+end
+
+function utility.emitExcludingPlayers(players: { Player }, ...: Instance)
+  for _, player in Players:GetPlayers() do
+    if table.find(players, player) then
+      continue
+    end
+
+    Emit:FireClient(player, "emit", ...)
+  end
+end
+
+return utility
+```
+
+### Example usage
+
+We can now replicate VFX using our new utility module!
+
+```luau filename="example_emit.server.luau"
+local Players = game:GetService("Players")
+local ServerStorage = game:GetService("ServerStorage")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local Effects = ReplicatedStorage:WaitForChild("VFX")
+
+local emit_utility = require(ServerStorage.emit_utility)
+
+-- emit for everyone
+emit_utility.emit(Effects.Explosion)
+
+Players.PlayerAdded:Connect(function(player)
+  -- emit only for this player
+  emit_utility.emitForPlayers({ player }, Effects.Wind)
+
+  -- emit for other players
+  emit_utility.emitExcludingPlayers({ player }, Effects.Explosion)
+end)
+```
