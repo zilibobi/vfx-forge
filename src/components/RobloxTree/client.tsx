@@ -92,7 +92,7 @@ export const ClientNode: FC<NodeProps> = ({
           />
         </button>
       ) : (
-        <div className="w-6 h-6" />
+        <div className="w-4 h-4" />
       )}
       <RobloxIcon type={type} size={18} />
       <span>{name || type}</span>
