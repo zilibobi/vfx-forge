@@ -1,0 +1,22 @@
+import { Tree, Node } from "../components/RobloxTree"
+
+## Setup
+### Initialization
+
+First, we need to initialize the emit module on each client. The code below assumes you have the module inside ReplicatedStorage like this:
+
+<Tree title="Module Setup" className="mt-4">
+  <Node open type="ReplicatedStorage">
+    <Node type="ModuleScript" name="ForgeVFX"/>
+  </Node>
+</Tree>
+
+You can place this code inside a LocalScript in StarterPlayerScripts.
+
+```luau filename="forge_init.client.luau"
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local vfx = require(ReplicatedStorage.ForgeVFX)
+
+vfx.init()
+```
