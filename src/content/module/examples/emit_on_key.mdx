@@ -1,0 +1,24 @@
+import ModuleInit from "../../../templates/ModuleInit.mdx"
+
+<ModuleInit />
+
+### Detecting key presses
+
+The code below emits the 'Explosion' effect inside the 'VFX' folder in ReplicatedStorage.
+
+```luau filename="forge_init.client.luau"
+local UserInputService = game:GetService("UserInputService")
+
+local Effects = ReplicatedStorage:WaitForChild("VFX")
+
+local EMIT_KEY = Enum.KeyCode.E
+
+UserInputService.InputBegan:Connect(function(input, ignore)
+  if ignore or input.KeyCode ~= EMIT_KEY then
+    return
+  end
+
+  -- Now emit whatever effects you want
+  vfx.emit(Effects.Explosion)
+end)
+```
